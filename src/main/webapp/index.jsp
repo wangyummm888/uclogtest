@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>layui后台管理模板</title>
+	<title>Log后台管理</title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta http-equiv="Access-Control-Allow-Origin" content="*">
@@ -15,14 +15,14 @@
 	<link rel="icon" href="favicon.ico">
 	<link rel="stylesheet" href="${path}/layui/css/layui.css" media="all" />
 	<link rel="stylesheet" href="//at.alicdn.com/t/font_tnyc012u2rlwstt9.css" media="all" />
-	<link rel="stylesheet" href="/uclogtest/css/main.css" media="all" />
+	<link rel="stylesheet" href="${path}/css/main.css" media="all" />
 </head>
 <body class="main_body">
 	<div class="layui-layout layui-layout-admin">
 		<!-- 顶部 -->
 		<div class="layui-header header">
 			<div class="layui-main">
-				<a href="#" class="logo">layui后台管理</a>
+				<a href="#" class="logo">Log后台管理</a>
 				<!-- 显示/隐藏菜单 -->
 				<a href="javascript:;" class="iconfont hideMenu icon-menu1"></a>
 				<!-- 搜索 -->
@@ -89,11 +89,11 @@
 					<li class="layui-nav-item" pc>
 						<a href="javascript:;">
 							<img src="images/face.jpg" class="layui-circle" width="35" height="35">
-							<cite>请叫我马哥</cite>
+							<cite>请叫我宇哥</cite>
 						</a>
 						<dl class="layui-nav-child">
-							<dd><a href="javascript:;" data-url="/uclogtest/page/user/userInfo.jsp"><i class="iconfont icon-zhanghu" data-icon="icon-zhanghu"></i><cite>个人资料</cite></a></dd>
-							<dd><a href="javascript:;" data-url="/uclogtest/page/user/changePwd.html"><i class="iconfont icon-shezhi1" data-icon="icon-shezhi1"></i><cite>修改密码</cite></a></dd>
+							<dd><a href="javascript:;" data-url="${path}/page/user/userInfo.jsp"><i class="iconfont icon-zhanghu" data-icon="icon-zhanghu"></i><cite>个人资料</cite></a></dd>
+							<dd><a href="javascript:;" data-url="${path}/page/user/changePwd.html"><i class="iconfont icon-shezhi1" data-icon="icon-shezhi1"></i><cite>修改密码</cite></a></dd>
 							<dd><a href="javascript:;" class="changeSkin"><i class="iconfont icon-huanfu"></i><cite>更换皮肤</cite></a></dd>
 							<dd><a href="${path}/page/login/login.jsp" class="signOut"><i class="iconfont icon-loginout"></i><cite>退出</cite></a></dd>
 						</dl>
@@ -105,7 +105,7 @@
 		<div class="layui-side layui-bg-black">
 			<div class="user-photo">
 				<a class="img" title="我的头像" ><img src="images/face.jpg"></a>
-				<p>你好！<span class="userName">请叫我马哥</span>, 欢迎登录</p>
+				<p>你好！<span class="userName">请叫我宇哥</span>, 欢迎登录</p>
 			</div>
 			<div class="navBar layui-side-scroll"></div>
 		</div>
@@ -126,14 +126,14 @@
 				</ul>
 				<div class="layui-tab-content clildFrame">
 					<div class="layui-tab-item layui-show">
-						<iframe src="/uclogtest/page/main.jsp"></iframe>
+						<iframe src="${path}/page/main.jsp"></iframe>
 					</div>
 				</div>
 			</div>
 		</div>
 		<!-- 底部 -->
 		<div class="layui-footer footer">
-			<p>copyright @2017 请叫我马哥　　<a onclick="donation()" class="layui-btn layui-btn-danger l·ayui-btn-small">捐赠作者</a></p>
+			<p>copyright @2017 请叫我宇哥　　<a onclick="donation()" class="layui-btn layui-btn-danger l·ayui-btn-small">捐赠作者</a></p>
 		</div>
 	</div>
 	
@@ -142,7 +142,7 @@
 	<div class="site-mobile-shade"></div>
 
 </body>
-<script type="text/javascript" src="/uclogtest/layui/layui.js"></script>
-<script type="text/javascript" src="/uclogtest/js/leftNav.js"></script>
-<script type="text/javascript" src="/uclogtest/js/index.js"></script>
+<script type="text/javascript" src="${path}/layui/layui.js"></script>
+<script type="text/javascript" src="${path}/js/leftNav.js"></script>
+<script type="text/javascript" src="${path}/js/index.js"></script>
 </html>
