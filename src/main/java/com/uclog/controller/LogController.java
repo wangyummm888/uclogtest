@@ -21,9 +21,7 @@ import java.util.List;
 @Controller
 public class LogController {
 
-
     private Logger logger=Logger.getLogger(this.getClass());
-
 
     @RequestMapping("index")
     public String toIndex(){

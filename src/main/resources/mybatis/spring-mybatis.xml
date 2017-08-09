@@ -18,24 +18,24 @@
         ">
     <!-- 引入属性文件 -->
     <context:property-placeholder location="classpath:prop/jdbc.properties" />
-    <!-- 自动扫描(自动注入) -->
-    <context:component-scan base-package="com.uclog.service.*" />
+
     <!-- 配置数据源 -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
           destroy-method="close">
-        <property name="driverClass" value="${driver}" />
-        <property name="jdbcUrl" value="${url}" />
-        <property name="user" value="${username}" />
-        <property name="password" value="${password}" />
+        <property name="driverClass" value="${jdbc.driver}" />
+        <property name="jdbcUrl" value="${jdbc.url}" />
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
         <property name="minPoolSize" value="1" />
         <property name="maxPoolSize" value="20" />
         <property name="maxIdleTime" value="1800" />
         <property name="acquireIncrement" value="2" />
-        <property name="maxStatements" value="0" />
+        <property name="maxStatements" value="1" />
         <property name="initialPoolSize" value="2" />
         <property name="idleConnectionTestPeriod" value="1800" />
         <property name="acquireRetryAttempts" value="30" />
-        <property name="breakAfterAcquireFailure" value="true" />
+        <property name="acquireRetryDelay" value="100"/>
+        <property name="breakAfterAcquireFailure" value="false" />
         <property name="testConnectionOnCheckout" value="false" />
     </bean>
 
@@ -48,7 +48,7 @@
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage"  value="com.gray.*.dao" />
+        <property name="basePackage"  value="com.uclog.dao" />
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
     </bean>
     <!-- 配置事务管理器 -->
@@ -63,4 +63,6 @@
         <constructor-arg index="0" ref="sqlSessionFactory" />
         <constructor-arg index="1" value="BATCH" />
     </bean>
+    <!-- 自动扫描(自动注入) -->
+    <context:component-scan base-package="com.uclog.service.impl" />
 </beans>

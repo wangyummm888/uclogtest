@@ -9,4 +9,7 @@
     request.setAttribute("basePath",basePath);
 
 %>
+<script type="text/javascript">
+    var path=${path};
+</script>
 

@@ -15,7 +15,19 @@ layui.config({
 	
 	//登录按钮事件
 	form.on("submit(login)",function(data){
-		window.location.href = "../../index.jsp";
-		return false;
+		$.ajax({
+			type: "POST",
+			url: path+"/login/login.do",
+			data: data,
+			dataType: "json",
+			success: function(data){
+				if(date.message=="sucess"){
+					window.location.href = "index.do";
+				}else{
+					alert(date.message);
+				}
+			}
+		});
+         return false;
 	})
 })

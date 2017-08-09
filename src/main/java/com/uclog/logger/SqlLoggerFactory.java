@@ -21,7 +21,6 @@ public class SqlLoggerFactory {
     private SqlLoggerFactory() {
     }
 
-
     public static SqlLogger getInstance(LoggingEvent event) {
         Level level = event.getLevel();
         SqlLogger logger = new SqlLogger();

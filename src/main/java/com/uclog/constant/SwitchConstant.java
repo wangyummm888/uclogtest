@@ -7,6 +7,7 @@ package com.uclog.constant;/**
  * @create 2017-08-07 14:56
  **/
 public class SwitchConstant {
+
     public static volatile boolean LOG_SPLIT_SWITCH = false;
 
 }
