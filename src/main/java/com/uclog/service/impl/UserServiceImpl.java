@@ -42,6 +42,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getByUsername(String loginName) {
-        return null;
+        return userMapper.getByLoginName(loginName);
     }
 }

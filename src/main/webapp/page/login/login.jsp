@@ -16,12 +16,12 @@
 </head>
 <body>
 	<video class="video-player" preload="auto" autoplay="autoplay" loop="loop" data-height="1080" data-width="1920" height="1080" width="1920">
-	    <source src="login.mp4" type="video/mp4">
+	    <source src="${path}/page/login/login.mp4" type="video/mp4">
 	</video>
 	<div class="video_mask"></div>
 	<div class="login">
 	    <h1>logtest-管理登录</h1>
-	    <form class="layui-form">
+	    <form class="layui-form" action="${path}/login/login.do" method="post">
 	    	<div class="layui-form-item">
 				<input class="layui-input" name="loginName" placeholder="用户名" lay-verify="required" type="text" autocomplete="off">
 		    </div>
@@ -36,7 +36,7 @@
 		</form>
 	</div>
 	<script type="text/javascript" src="${path}/layui/layui.js"></script>
-	<script type="text/javascript" src="login.js"></script>
+	<script type="text/javascript" src="${path}/page/login/login.js"></script>
 	<script type="text/javascript">
 		function changeImg(){
 			var img = document.getElementById("img");

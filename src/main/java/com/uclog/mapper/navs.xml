@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.uclog.dao.NavsMapper">
+    <resultMap id="BaseResultMap" type="com.uclog.model.Navs">
+        <result column="id" property="id" />
+        <result column="title" property="title" />
+        <result column="icon" property="icon"/>
+        <result column="href" property="href"/>
+        <result column="spread_flag" property="spreadFlag"/>
+        <result column="target" property="target"/>
+        <collection property="children" column="id" select="getChildren" />
+    </resultMap>
+
+
+
+    <sql id="Base_Column_List" >
+        id, title,icon,href,spread_flag,target,parent_id
+    </sql>
+
+    <select id="getNavs" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from t_navs t WHERE t.parent_id=0
+        order by t.order
+    </select>
+
+
+
+    <select id="getChildren" resultMap="BaseResultMap" parameterType="string">
+        select
+        <include refid="Base_Column_List" />
+        from t_navs  t where t.parent_id=#{id}
+        order by t.order
+    </select>
+
+
+
+</mapper>

@@ -10,6 +10,5 @@
 
 %>
 <script type="text/javascript">
-    var path=${path};
+    var rootPath= "${path}";
 </script>
-

@@ -23,14 +23,6 @@ public class LogController {
 
     private Logger logger=Logger.getLogger(this.getClass());
 
-    @RequestMapping("index")
-    public String toIndex(){
-        logger.info("登陆开始了啊");
-        return "index";
-    }
-
-
-
     @RequestMapping("toLog")
     public String toLog(){
         return "log";

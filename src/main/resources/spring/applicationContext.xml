@@ -12,12 +12,16 @@
          http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd
          http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
 
+	<import resource="../mybatis/spring-mybatis.xml"/>
+
+	<context:component-scan base-package="com.uclog.service.impl" />
+
 	<!-- 自定义Realm -->
-	<bean id="myRealm" class="com.uclog.security.UcRealm"/>
+	<bean id="ucRealm" class="com.uclog.security.UcRealm"/>
 
 	<!-- 安全管理器 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-		<property name="realm" ref="myRealm"/>
+		<property name="realm" ref="ucRealm"/>
 	</bean>
 
 
@@ -26,13 +30,14 @@
 		<!-- Shiro的核心安全接口,这个属性是必须的 -->
 		<property name="securityManager" ref="securityManager"/>
 		<!-- 身份认证失败，则跳转到登录页面的配置 -->
-		<property name="loginUrl" value="/login.jsp"/>
+		<property name="loginUrl" value="/page/login/login.jsp"/>
 		<!-- 权限认证失败，则跳转到指定页面 -->
 		<property name="unauthorizedUrl" value="/unauthorized.jsp"/>
 		<!-- Shiro连接约束配置,即过滤链的定义 -->
 		<property name="filterChainDefinitions">
 			<value>
 				/login=anon
+				/index/**=authc
 				/user/admin*=authc
 				/user/student*/**=roles[teacher]
 				/user/teacher*/**=perms["user:create"]

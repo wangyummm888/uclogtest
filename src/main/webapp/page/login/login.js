@@ -17,7 +17,7 @@ layui.config({
 	form.on("submit(login)",function(data){
 		$.ajax({
 			type: "POST",
-			url: path+"/login/login.do",
+			url: rootPath+"/login/login.do",
 			data: data,
 			dataType: "json",
 			success: function(data){

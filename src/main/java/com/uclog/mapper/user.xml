@@ -3,10 +3,11 @@
 <mapper namespace="com.uclog.dao.UserMapper">
     <resultMap id="BaseResultMap" type="com.uclog.model.User">
         <result column="id" property="id" />
-        <result column="" property="loginName" />
+        <result column="login_name" property="loginName" />
+        <result column="pass_word" property="passWord"/>
     </resultMap>
     <sql id="Base_Column_List" >
-        id, login_name
+        id, login_name,pass_word,user_name
     </sql>
 
     <select id="getAllUser" resultMap="BaseResultMap" >
@@ -14,4 +15,13 @@
         <include refid="Base_Column_List" />
         from t_user
     </select>
+
+
+    <select id="getByLoginName" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT
+        <include refid="Base_Column_List" />
+        from t_user
+        where login_name=#{login_name}
+    </select>
+
 </mapper>

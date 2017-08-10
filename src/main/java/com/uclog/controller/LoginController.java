@@ -3,7 +3,9 @@ package com.uclog.controller;/**
  */
 
 import com.uclog.model.User;
+import com.uclog.utils.MD5Tools;
 import com.uclog.utils.VerifyCodeUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -28,26 +30,56 @@ import java.io.IOException;
 @RequestMapping("/login")
 public class LoginController {
 
+    public static final String LOGIN_ERROR_PAGE="page/error/loginError";
 
+    public static final String INDEX_PAGE="index";
+
+
+    public static final  String LOGIN_PAGE="page/login/login";
 
     private Logger logger=Logger.getLogger(this.getClass());
 
+
+
+    @RequestMapping(value = "/toLogin.do")
+    public String  toLogin(){
+        return LOGIN_PAGE;
+    }
+
+
     @RequestMapping(value = "/login.do", method = RequestMethod.POST)
-    public String isLogin(HttpServletRequest request, User passwordAuthcInfo) {
+    public String isLogin(HttpServletRequest request, User passwordAuthcInfo,String code) {
+        HttpSession session = request.getSession(true);
+        String errorMessage = "";
+        String verCode =(String)session.getAttribute("verCode");
+        //验证码校验
+        if(StringUtils.isBlank(code)){
+            errorMessage = "验证码不能为空：";
+            logger.info(errorMessage);
+            return LOGIN_ERROR_PAGE;
+        }else if(StringUtils.isBlank(verCode)){
+            errorMessage = "服务器不存在验证码";
+            logger.info(errorMessage);
+            return LOGIN_ERROR_PAGE;
+        }else if(!code.toLowerCase().equals(verCode.toLowerCase())){
+            errorMessage = "验证码不正确";
+            logger.info(errorMessage);
+            session.setAttribute("errorMessage", errorMessage);
+            return LOGIN_ERROR_PAGE;
+        }
         String loginName = passwordAuthcInfo.getLoginName();
         String loginPassword = passwordAuthcInfo.getPassWord();
         logger.info("loginName:" + loginName + ";loginPassword:" + loginPassword);
-        HttpSession session = request.getSession(true);
-        String errorMessage = "";
         Subject user = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(loginName, loginPassword);
+        String md5Pass=MD5Tools.MD5(loginPassword).toLowerCase();
+        UsernamePasswordToken token = new UsernamePasswordToken(loginName,md5Pass);
         token.setRememberMe(true);
         try {
             user.login(token);
             String userID = (String) user.getPrincipal();
             logger.info("User [" + userID + "] logged in successfully.");
             session.setAttribute("USERNAME", userID);
-            return "success";
+            return  "redirect:/index/toIndex.do";
         } catch (UnknownAccountException uae) {
             errorMessage = "用户认证失败：" + "username wasn't in the system.";
             logger.info(errorMessage);
@@ -63,8 +95,8 @@ public class LoginController {
             e.printStackTrace();
             token.clear();
         }
-        session.setAttribute("ErrorMessage", errorMessage);
-        return "error";
+        session.setAttribute("errorMessage", errorMessage);
+        return LOGIN_ERROR_PAGE;
     }
 
 

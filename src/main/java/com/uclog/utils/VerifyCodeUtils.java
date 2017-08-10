@@ -24,7 +24,6 @@ public class VerifyCodeUtils {
     public static final String VERIFY_CODES = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ";
     private static Random random = new Random();
 
-
     /**
      * 使用系统默认字符源生成验证码
      * @param verifySize    验证码长度
@@ -254,9 +253,7 @@ public class VerifyCodeUtils {
                 g.drawLine(i, (int) d, i, 0);
                 g.drawLine(i, (int) d + h1, i, h1);
             }
-
         }
-
     }
     public static void main(String[] args) throws IOException{
         File dir = new File("F:/verifies");
@@ -267,6 +264,4 @@ public class VerifyCodeUtils {
             outputImage(w, h, file, verifyCode);
         }
     }
-
-
 }
